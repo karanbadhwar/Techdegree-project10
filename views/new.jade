@@ -1,0 +1,27 @@
+extends layout 
+
+block content 
+
+    a(href="/" class="back") &#8592 
+    h1 New Book 
+    form(action="/book/new" method="POST" class="newForm")
+        label 
+            strong Title
+            input(type='text' placeholder='Title' name="title" )
+        br
+        label 
+            strong Author
+            input(type='text' placeholder='Author' name="author")
+        br
+        label 
+            strong Genre
+            input(type='text' placeholder='Genre' name="genre")
+        br
+        label 
+            strong Year
+            input(type='text' placeholder='Year' name="year")
+
+        br
+        button(type="submit" class="button") Create New Book
+        br
+        button(type="reset" class="button") Cancel

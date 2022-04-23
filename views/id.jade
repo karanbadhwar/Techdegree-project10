@@ -1,0 +1,29 @@
+extends layout 
+
+block content 
+
+    a(href="/" class="back") &#8592 
+    h1 Update Book 
+    form(action=`/book/${book.id}` method="POST" class="newForm")
+        label 
+            strong Title
+            input(type='text' placeholder='Title' name="title" value= book.title )
+        br
+        label 
+            strong Author
+            input(type='text' placeholder='Author' name="author" value= book.author)
+        br
+        label 
+            strong Genre
+            input(type='text' placeholder='Genre' name="genre" value= book.genre)
+        br
+        label 
+            strong Year
+            input(type='text' placeholder='Year' name="year" value= book.year)
+
+        br
+        button(type="submit" class="button" name='submit' value='update') Update Book
+        br
+        button(type="submit" class="button" name='submit' value='cancel') Cancel
+        br
+        button(type="submit" class="button" value='delete' name='submit') Delete 

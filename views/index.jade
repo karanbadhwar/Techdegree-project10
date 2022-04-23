@@ -1,5 +1,28 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  section.container
+    h1 Books
+    div.anchor
+      a(class="create" href="/book/new") Create New Book
+      .searchbar 
+        form(action="/search", method="post") 
+         input(type="text", name="search" placeholder="Search...")
+         button(type="submit") 
+           i.fas.fa-search 
+    table
+      thead
+        tr
+          th title
+          th Author
+          th Genre
+          th Year
+      tbody  
+        each row in headings 
+          tr 
+            td= row.title 
+            td= row.author 
+            td= row.genre 
+            td= row.year
+
+
