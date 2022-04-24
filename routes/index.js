@@ -26,9 +26,33 @@ router.get('/', async function(req, res, next) {
 // The Home Page
 router.get('/book', async (req,res,next) =>{
   const headings = await Book.findAll();
-  // console.log(headings);
-  res.render('index', { headings })
+  const head = await Book.findAndCountAll({
+    limit: 6
+  });
+  // console.log(head.rows);
+  let page = headings.length / 6;
+  page = Math.ceil(page);
+
+  res.render('index', { headings: head.rows, page })
 });
+
+router.post('/book', async(req,res) =>{
+  let value = parseInt(req.body.submit);
+  // console.log(value);
+  if(value === 1){
+    res.redirect('/book');
+  }else{
+    const head = await Book.findAndCountAll({
+      limit: 6,
+      offset: 6 * (value - 1)
+    });
+    console.log(head.count);
+    let page = head.count / 6;
+    page = Math.ceil(page);
+    res.render('index', {headings: head.rows, page})
+  }
+});
+
 
 // Create New Book
 router.get('/book/new', asyncHandler((req,res,next) =>{
@@ -39,6 +63,7 @@ router.get('/book/new', asyncHandler((req,res,next) =>{
 router.post('/book/new', asyncHandler(async(req,res,next) =>{
   try{
     const book = await Book.create(req.body);
+    res.redirect('/');
   } catch(error){
   if(error.name === 'SequelizeValidationError'){
     // console.log(error);

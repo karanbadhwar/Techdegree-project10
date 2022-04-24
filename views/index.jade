@@ -13,16 +13,24 @@ block content
     table
       thead
         tr
-          th title
+          th Id
+          th Title
           th Author
           th Genre
           th Year
       tbody  
         each row in headings 
           tr 
+            td= row.id
             td= row.title 
             td= row.author 
             td= row.genre 
             td= row.year
-
-
+    br
+    .pagination 
+      form(action="/book", method="post") 
+        -var n= page 
+        -var i = 1;
+        while i <= n 
+          button(type="submit" name="submit" value=i)= i
+          -i++

@@ -20,7 +20,7 @@ h1{
   margin-top: -20px;
 }
 .container{
-  width: 80%;
+  width: 60%;
 }
 .container h1{
   font-size: 1.8rem;
@@ -34,6 +34,7 @@ h1{
 div .create{
   padding: 15px;
   margin-left: 0px;
+  width: 25%;
 }
 div .search{
   width: 5%;
@@ -62,7 +63,7 @@ a:active{
   height: 50%;
   align-self: center;
   transform-origin: right;
-  transition: all .5s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 .searchbar button{
   padding: 10px;
@@ -78,7 +79,7 @@ a:active{
   border: none;
   background: none;
   outline: none;
-  transition: all .5s ease-in-out;
+  transition: all .3s ease-in-out;
   /* transform-origin: right; */
   color: white;
 }
@@ -96,19 +97,6 @@ a:active{
   border-radius: 10px;
 }
 
-/*
-.searchbar input:active{
-  width: 100%;
-  border: none;
-}
-.searchbar:hover{
-  border-radius: 10px;
-} */
-
-/* .searchbar:hover{
-  width: 200px;
-  border-radius: 10%;
-} */
 table thead{
   font-size: 1.2rem;
   font-weight: bold;
@@ -131,6 +119,11 @@ table tbody tr td:nth-child(1){
   color: rgb(60,179,113);
   font-weight: bold;
 }
+
+table tbody tr td:nth-child(2){
+  width: 50%;
+}
+
 
 /* Form New Create Book */
 .newForm {
@@ -163,7 +156,22 @@ table tbody tr td:nth-child(1){
 .error {
   color: red;
 }
- 
+
+/* Pagination */
+.pagination{
+  display: flex;
+  justify-content: center;
+}
+.pagination button{
+  font-size: 1rem;
+  cursor: pointer;
+}
+.pagination button:first-child{
+  margin-left: -200px;
+}
+
+v
+
 /* Media Queries */
 @media screen and (max-width: 768px) {
   .anchor{
@@ -171,4 +179,21 @@ table tbody tr td:nth-child(1){
     width: 100%;
   }
 
+}
+@media screen and (min-width: 768px) {
+  .anchor{
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 950px) {
+  .anchor{
+    justify-content: space-between;
+    width: 80%;
+  }
+}
+@media screen and (max-width: 950px) {
+  .pagination button:first-child{
+    margin-left: 0;
+  }
 }
