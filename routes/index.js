@@ -127,7 +127,7 @@ router.post('/search', async(req,res,next) =>{
   if(book){
    res.render('id', { book });
   } else{
-    const error = new Error('This page is not available');
+    const error = new Error("Sorry! We couldn't find the page you were looking for.");
     error.status = 404;
     next(error);
   }
