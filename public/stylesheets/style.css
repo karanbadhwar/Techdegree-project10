@@ -170,7 +170,7 @@ table tbody tr td:nth-child(2){
   margin-left: -200px;
 }
 
-v
+
 
 /* Media Queries */
 @media screen and (max-width: 768px) {
@@ -178,7 +178,6 @@ v
     justify-content: space-between;
     width: 100%;
   }
-
 }
 @media screen and (min-width: 768px) {
   .anchor{
