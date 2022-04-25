@@ -46,7 +46,7 @@ router.post('/book', async(req,res) =>{
       limit: 6,
       offset: 6 * (value - 1)
     });
-    // console.log(head.count);
+    console.log(head.count);
     let page = head.count / 6;
     page = Math.ceil(page);
     res.render('index', {headings: head.rows, page})
