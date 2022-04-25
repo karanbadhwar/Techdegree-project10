@@ -53,6 +53,12 @@ a{
 a:active{
   transform: scale(0.9)
 }
+.data{
+  color:rgb(60,179,113);
+  background: inherit;
+  width: inherit;
+  text-align: left;
+}
 .anchor .search{
   border-radius: 50%;
 }
@@ -93,7 +99,7 @@ a:active{
   width: 80%;
   height: 100%;
   border: none;
-  background-color: rgb(60, 180, 114);
+  background-color: rgba(60, 180, 114, 0.8);
   border-radius: 10px;
 }
 
@@ -115,10 +121,10 @@ table tr:nth-child(even){
   background: rgb(226, 218, 218);
 } 
 
-table tbody tr td:nth-child(1){
+/* table tbody tr td:nth-child(1){
   color: rgb(60,179,113);
   font-weight: bold;
-}
+} */
 
 table tbody tr td:nth-child(2){
   width: 50%;

@@ -25,7 +25,7 @@ const sequelize = require('./models/index.js').sequelize;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 
 //Static Middleware
 app.use('/static', express.static('public'));
@@ -48,7 +48,7 @@ app.use('/users', usersRouter);
 app.use((req,res,next)=>{
   const error = new Error("Sorry! We couldn't find the page you were looking for.");
   error.status = 404;
-  res.sendStatus(404);
+  res.status(404);
   console.log(error.message);
   console.log(error.status);
   

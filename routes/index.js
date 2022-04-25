@@ -46,7 +46,7 @@ router.post('/book', async(req,res) =>{
       limit: 6,
       offset: 6 * (value - 1)
     });
-    console.log(head.count);
+    // console.log(head.count);
     let page = head.count / 6;
     page = Math.ceil(page);
     res.render('index', {headings: head.rows, page})
@@ -110,26 +110,39 @@ router.post('/book/:id', asyncHandler(async(req,res) =>{
   }
 }));
 
+// Search Router
 router.post('/search', async(req,res,next) =>{
   const search = req.body.search;
   if(!search){
     res.redirect('/');
   } else{
-    let book = await Book.findAll({
+    let headings = await Book.findAll({
       where:{
         [Op.or]:[
           {id : search},
-          {title: search},
+          {title: {
+            [Op.like]: `%${search}%`
+          }},
+          {genre: {
+            [Op.like]: `%${search}%`
+          }},
+          {year: {
+            [Op.like]: `%${search}%`
+          }}
         ]
       }
     });
-  book = book[0];
-  if(book){
-   res.render('id', { book });
+  // book = book[0];
+  console.log(headings);
+  if(headings.length > 0){
+    console.log(headings.length);
+    let page = headings.length / 6;
+    page = Math.ceil(page);
+   res.render('index', { headings, page });
   } else{
     const error = new Error("Sorry! We couldn't find the page you were looking for.");
     error.status = 404;
-    next(error);
+    res.render('page-not-found', { error })
   }
   }
 

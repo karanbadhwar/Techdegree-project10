@@ -22,7 +22,8 @@ block content
         each row in headings 
           tr 
             td= row.id
-            td= row.title 
+            td
+              a(href=`/book/${row.id}` class='data')= row.title 
             td= row.author 
             td= row.genre 
             td= row.year
