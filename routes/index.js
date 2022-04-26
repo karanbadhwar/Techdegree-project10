@@ -20,11 +20,11 @@ const {Op} = require('sequelize');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-   res.redirect('/book');
+   res.redirect('/book-get');
 });
 
 // The Home Page
-router.get('/book', async (req,res,next) =>{
+router.get('/book-get', async (req,res,next) =>{
   const headings = await Book.findAll();
   const head = await Book.findAndCountAll({
     limit: 6
@@ -36,11 +36,11 @@ router.get('/book', async (req,res,next) =>{
   res.render('index', { headings: head.rows, page })
 });
 
-router.post('/book', async(req,res) =>{
+router.post('/book-post', async(req,res) =>{
   let value = parseInt(req.body.submit);
   // console.log(value);
   if(value === 1){
-    res.redirect('/book');
+    res.redirect('/book-get');
   }else{
     const head = await Book.findAndCountAll({
       limit: 6,
@@ -55,12 +55,12 @@ router.post('/book', async(req,res) =>{
 
 
 // Create New Book
-router.get('/book/new', asyncHandler((req,res,next) =>{
+router.get('/book/new-get', asyncHandler((req,res,next) =>{
   res.render('new-book');
 }));
 
 //Posting the newly created Book
-router.post('/book/new', asyncHandler(async(req,res,next) =>{
+router.post('/book/new-post', asyncHandler(async(req,res,next) =>{
   try{
     const book = await Book.create(req.body);
     res.redirect('/');
@@ -74,7 +74,7 @@ router.post('/book/new', asyncHandler(async(req,res,next) =>{
 }));
 
 //Getting Book by ID
-router.get('/book/:id', asyncHandler(async(req,res) =>{
+router.get('/book/:id/-get', asyncHandler(async(req,res) =>{
   const book = await Book.findByPk(req.params.id);
   if(book){
     res.render('update-book', { book });
@@ -87,7 +87,7 @@ router.get('/book/:id', asyncHandler(async(req,res) =>{
 }));
 
 //Post data with /id(update and delete)
-router.post('/book/:id', asyncHandler(async(req,res) =>{
+router.post('/book/:id/-post', asyncHandler(async(req,res) =>{
   const book = await Book.findByPk(req.params.id);
   if(req.body.submit === 'delete'){
     await Book.destroy({
@@ -95,7 +95,7 @@ router.post('/book/:id', asyncHandler(async(req,res) =>{
         id: req.params.id,
       }
     });
-    res.redirect('/');
+    res.redirect('/book-get');
   } else if(req.body.submit === 'update'){
     try{
       await book.update(req.body);

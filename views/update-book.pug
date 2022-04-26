@@ -4,7 +4,7 @@ block content
 
     a(href="/" class="back") &#8592 
     h1 Update Book 
-    form(action=`/book/${book.id}` method="POST" class="newForm")
+    form(action=`/book/${book.id}/-post` method="POST" class="newForm")
         label 
             strong Title
             input(type='text' placeholder='Title' name="title" value= book.title )
