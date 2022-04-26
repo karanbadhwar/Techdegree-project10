@@ -56,7 +56,7 @@ router.post('/book', async(req,res) =>{
 
 // Create New Book
 router.get('/book/new', asyncHandler((req,res,next) =>{
-  res.render('new');
+  res.render('new-book');
 }));
 
 //Posting the newly created Book
@@ -77,7 +77,7 @@ router.post('/book/new', asyncHandler(async(req,res,next) =>{
 router.get('/book/:id', asyncHandler(async(req,res) =>{
   const book = await Book.findByPk(req.params.id);
   if(book){
-    res.render('id', { book });
+    res.render('update-book', { book });
   } else{
     const error = new Error("Sorry! We couldn't find the page you were looking for.");
     error.status = 404;
@@ -121,6 +121,9 @@ router.post('/search', async(req,res,next) =>{
         [Op.or]:[
           {id : search},
           {title: {
+            [Op.like]: `%${search}%`
+          }},
+          {author:{
             [Op.like]: `%${search}%`
           }},
           {genre: {
