@@ -4,7 +4,7 @@ block content
   section.container
     h1 Books
     div.anchor
-      a(class="create" href="/book/new-get") Create New Book
+      a(class="create" href="/books/new") Create New Book
       .searchbar 
         form(action="/search", method="post") 
          input(type="text", name="search" placeholder="Search...")
@@ -23,13 +23,13 @@ block content
           tr 
             td= row.id
             td
-              a(href=`/book/${row.id}/-get` class='data')= row.title 
+              a(href=`/books/${row.id}` class='data')= row.title 
             td= row.author 
             td= row.genre 
             td= row.year
     br
     .pagination 
-      form(action="/book-post", method="post") 
+      form(action="/books", method="post") 
         -var n= page 
         -var i = 1;
         while i <= n 
